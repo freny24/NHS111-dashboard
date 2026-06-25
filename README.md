@@ -1,72 +1,116 @@
 # NHS 111 IUC Performance Dashboard
 
-Operational performance dashboard for NHS 111 Integrated Urgent Care, built on
-public NHS England Weekly IUC ADC data.
-
-**Data:** 7.2M calls · 18 weeks · 28 providers · 7 NHS regions · Nov 2025–Apr 2026  
-**Key finding:** 78.2% avg answered in 60s vs 95% NHS target · 0/18 weeks hit target nationally
-
-Live Dashboard link: https://nhs111-dashboard.streamlit.app/
+> Operational analytics dashboard for NHS 111 Integrated Urgent Care — built on public NHS England data to surface performance gaps, regional disparities, and demand patterns across England's urgent care network.
 
 ---
 
-## What's in this zip
+## Why This Exists
+
+NHS 111 is the front door to urgent care in England. When it underperforms, patients wait longer, ambulances are dispatched unnecessarily, and A&E departments absorb demand that could have been managed upstream.
+
+This dashboard makes the national performance picture visible — week by week, provider by provider, region by region — using only publicly available data.
+
+**Core finding: 78.2% of calls answered within 60 seconds against a 95% NHS target. No week in the 18-week period hit the national target. Not one.**
+
+---
+
+## Dataset
+
+| Dimension | Detail |
+|---|---|
+| Source | NHS England Weekly IUC ADC (public domain) |
+| Period | November 2025 – April 2026 |
+| Calls analysed | 7.2 million |
+| Weeks covered | 18 |
+| Providers | 28 |
+| NHS regions | 7 |
+
+Data source: [NHS England UEC SitRep](https://www.england.nhs.uk/statistics/statistical-work-areas/uec-sitrep/)
+
+---
+
+## What's Inside
 
 ```
 nhs111-dashboard/
 │
-├── app.py                         ← Streamlit dashboard (run this)
-├── process_data.py                ← Raw Excel → clean CSVs (re-run if you get new data)
-├── nhs111_analysis.sql            ← All SQL queries (7 sections, fully commented)
-├── requirements.txt               ← Python packages needed
+├── app.py                          ← Streamlit dashboard (run this)
+├── process_data.py                 ← Raw Excel → clean CSVs pipeline
+├── nhs111_analysis.sql             ← 7-section SQL analysis (fully commented)
+├── requirements.txt                ← Python dependencies
 │
 ├── data/
-│   ├── nhs111_weekly.csv          ← Weekly data per provider (used by dashboard)
-│   ├── nhs111_national_weekly.csv ← England totals per week (used by dashboard)
-│   ├── nhs111_daily.csv           ← Daily data per provider (for deeper analysis)
-│   ├── provider_lookup.csv        ← Provider reference table
-│   ├── region_lookup.csv          ← Region reference table
-│   └── nhs111.db                  ← SQLite database (all tables, for SQL tools)
+│   ├── nhs111_weekly.csv           ← Weekly data per provider
+│   ├── nhs111_national_weekly.csv  ← England-level weekly totals
+│   ├── nhs111_daily.csv            ← Daily granularity per provider
+│   ├── provider_lookup.csv         ← Provider reference table
+│   ├── region_lookup.csv           ← Region reference table
+│   └── nhs111.db                   ← SQLite database (all tables)
 │
 ├── powerbi_guide/
-│   └── POWERBI_BUILD_GUIDE.md     ← Step-by-step Power BI build guide (if needed)
+│   └── POWERBI_BUILD_GUIDE.md      ← Step-by-step Power BI instructions
 │
 └── .streamlit/
-    └── config.toml                ← NHS blue colour theme
+    └── config.toml                 ← NHS blue colour theme
 ```
 
 ---
 
+## SQL Analysis — 7 Sections
 
-## Option 1: Deploy free as a live link (5 minutes)
+The `nhs111_analysis.sql` file covers the full analytical layer independently of the dashboard:
 
-1. Push this folder to GitHub
-2. Go to share.streamlit.io → sign in → New app → select repo → Deploy
-3. Get a URL like https://freny24-nhs111-dashboard.streamlit.app
-4. Send that link — anyone clicks it, no account needed
-
----
-
-## Option 2: Explore the SQL
-
-Open `data/nhs111.db` in **DB Browser for SQLite** (free, any OS):
-https://sqlitebrowser.org
-
-Then paste queries from `nhs111_analysis.sql`. Seven sections covering:
-national KPIs · provider league table · exception weeks · regional breakdown ·
-trend analysis · disposition analysis · Power BI helper views
+1. **National KPIs** — headline performance vs 95% target
+2. **Provider league table** — ranked performance across all 28 providers
+3. **Exception weeks** — identifying weeks with significant target deviation
+4. **Regional breakdown** — performance disaggregated across 7 NHS regions
+5. **Trend analysis** — week-on-week trajectory
+6. **Disposition analysis** — call outcome breakdown (ambulance, A&E, self-care)
+7. **Power BI helper views** — pre-aggregated views ready for direct import
 
 ---
 
-## Option 3: Build the Power BI dashboard
+## Three Ways to Explore This
 
-Follow `powerbi_guide/POWERBI_BUILD_GUIDE.md` — field-by-field instructions,
-DAX measures, conditional formatting rules, NHS colour codes.
-Load the CSVs from the `data/` folder directly into Power BI Desktop (free).
+### Option 1 — Live Dashboard
+👉 [https://nhs111-dashboard.streamlit.app](https://nhs111-dashboard.streamlit.app)
+
+### Option 2 — SQL Exploration
+Open `data/nhs111.db` in [DB Browser for SQLite](https://sqlitebrowser.org) (free, any OS) and paste queries from `nhs111_analysis.sql`.
+
+### Option 3 — Power BI
+Follow `powerbi_guide/POWERBI_BUILD_GUIDE.md` for field-by-field build instructions including DAX measures, conditional formatting rules, and NHS colour codes. Load CSVs from `data/` directly into Power BI Desktop.
 
 ---
 
-## Data source
+## How to Run Locally
 
-[NHS England Weekly IUC ADC](https://www.england.nhs.uk/statistics/statistical-work-areas/uec-sitrep/)
-Public domain. NHS 111 target: 95% of calls answered within 60 seconds.
+```bash
+git clone https://github.com/freny24/NHS111-dashboard
+cd NHS111-dashboard
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+To refresh with new data when NHS England publishes updated figures:
+```bash
+python process_data.py
+```
+
+---
+
+## Clinical Context
+
+This project sits upstream of the hospital admission problem. The SETT Data & AI Research Unit at University Hospital Southampton published work in 2025 predicting discharge delays using ML at the point of admission. This dashboard asks what the signal looks like *before* patients arrive — in the urgent care pathway that precedes that admission decision.
+
+Understanding NHS 111 demand, disposition patterns, and performance gaps is foundational to understanding patient flow across the whole urgent care system.
+
+---
+
+## Author
+
+**Freny Reji**
+MS Data Science · Indiana University Bloomington
+[LinkedIn](https://www.linkedin.com/in/freny24) · [GitHub](https://github.com/freny24)
+
+*Built with public NHS England data. All analysis reproducible from source.*
