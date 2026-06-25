@@ -6,6 +6,8 @@ public NHS England Weekly IUC ADC data.
 **Data:** 7.2M calls · 18 weeks · 28 providers · 7 NHS regions · Nov 2025–Apr 2026  
 **Key finding:** 78.2% avg answered in 60s vs 95% NHS target · 0/18 weeks hit target nationally
 
+Live Dashboard link: https://nhs111-dashboard.streamlit.app/
+
 ---
 
 ## What's in this zip
@@ -35,22 +37,8 @@ nhs111-dashboard/
 
 ---
 
-## Option 1: Run the Streamlit dashboard (recommended)
 
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-```
-
-Opens at http://localhost:8501. Four pages:
-- 🏠 National Overview — headline KPIs, trend charts
-- 🏥 Provider Performance — league table with RAG status
-- ⚠️ Exception Analysis — who's failing and how often
-- 📊 Trend Analysis — rolling averages, provider comparisons
-
----
-
-## Option 2: Deploy free as a live link (5 minutes)
+## Option 1: Deploy free as a live link (5 minutes)
 
 1. Push this folder to GitHub
 2. Go to share.streamlit.io → sign in → New app → select repo → Deploy
@@ -59,7 +47,7 @@ Opens at http://localhost:8501. Four pages:
 
 ---
 
-## Option 3: Explore the SQL
+## Option 2: Explore the SQL
 
 Open `data/nhs111.db` in **DB Browser for SQLite** (free, any OS):
 https://sqlitebrowser.org
@@ -70,7 +58,7 @@ trend analysis · disposition analysis · Power BI helper views
 
 ---
 
-## Option 4: Build the Power BI dashboard
+## Option 3: Build the Power BI dashboard
 
 Follow `powerbi_guide/POWERBI_BUILD_GUIDE.md` — field-by-field instructions,
 DAX measures, conditional formatting rules, NHS colour codes.
