@@ -1,0 +1,29 @@
+contract_code,contract_name,region_code,region_name
+111AC5,Cambridgeshire and Peterborough,East of England,East of England
+111AC7,Milton Keynes,East of England,East of England
+111AG7,Luton and Bedfordshire,East of England,East of England
+111AG8,Norfolk including Great Yarmouth and Waveney,East of England,East of England
+111AH4,Mid & South Essex,East of England,East of England
+111AH7,North East Essex & Suffolk,East of England,East of England
+111AM1,West Essex & Hertfordshire,East of England,East of England
+111AD7,South East London,London,London
+111AH5,North East London,London,London
+111AJ1,North West London,London,London
+111AK9,South West London (PPG),London,London
+111AL9,North Central London (LAS),London,London
+111AL7,Midlands,Midlands,Midlands
+111AA1,North East,North East and Yorkshire,North East and Yorkshire
+111AI7,Yorkshire and Humber (NECS),North East and Yorkshire,North East and Yorkshire
+111AJ3,North West including Blackpool (ML CSU),North West,North West
+111AA6,Isle of Wight,South East,South East
+111AG9,Thames Valley,South East,South East
+111AH9,Hampshire and Surrey Heath,South East,South East
+111AI2,Surrey Heartlands,South East,South East
+111AI9,"Kent, Medway & Sussex",South East,South East
+111AI4,Dorset (DHC),South West,South West
+111AI5,"Bristol, North Somerset & South Gloucestershire (BRISDOC)",South West,South West
+111AL2,Devon (PPG),South West,South West
+111AL3,Cornwall (HUC),South West,South West
+111AL5,Somerset (HUC),South West,South West
+111AL6,"BaNES, Swindon & Wiltshire (Medvivo-PPG)",South West,South West
+111AL8,Gloucestershire (Trust/IC24),South West,South West
